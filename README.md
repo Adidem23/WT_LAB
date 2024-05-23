@@ -13,5 +13,5 @@ ORIGINAL WT CODER : https://github.com/Ayush11090/WTCODER
 
 CheatCodes : 
 - BlackBox AI VS CODE Extension
-- Write 1s After github.com
+- Write 1s After github{Here}.com
 - 
