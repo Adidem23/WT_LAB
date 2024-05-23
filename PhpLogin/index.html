@@ -1,55 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limited Concurrency Access</title>
-</head>
-
-<body>
-    <h1>Connection Status</h1>
-    <input id="inputValue" type="number" placeholder="Enter user Id"  />
-    <button onclick="checkAvailability()">Login</button>
-    <p id="message"></p>
-    <p id="CurrentlyUser"></p>
-    <button id="logout-btn">Logout</button>
-    <script>
-        const messageElement = document.getElementById('message');
-        const logoutButton = document.getElementById('logout-btn');
-        const UserCount=document.getElementById("CurrentlyUser");
-        const inputValue=document.getElementById('inputValue');
-
-        function checkAvailability() {
-            fetch('login.php')
-                .then(response => response.text())
-                .then(data => {
-                    
-                    if (data<4) {
-                        messageElement.textContent = `Access granted for user ${inputValue.value}`;
-
-                        UserCount.innerHTML=`Currently Logined User: ${data}`
-                    }else{
-                        messageElement.textContent = 'Maximum connections reached. Please try again later.';
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    messageElement.textContent = 'An error occurred. Please try again later.';
-                });
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
-        logoutButton.addEventListener('click', () => {
-            fetch('logout.php').then(res=>res.text()).then((data)=>{
-                UserCount.innerHTML=`Currently Logined User: ${data}`;
+        div {
+            margin-top: 15%;
+        }
 
-            }).catch(error => {
-                    console.error(error);
-                    messageElement.textContent = 'Logout failed. Please try again.';
-                });
-        });
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    </script>
-</body>
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
 
-</html>
+        input[type="text"],
+        input[type="password"] {
+            width: 93%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            vertical-align: middle;
+        }
+
+        input[type="submit"] {
+            background-color: #0077B6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <center><h2>Login Page</h2></center>
+    <form action="login.php" method="post">
+        <label for="">Username: </label>
+        <input type="text" name="username">
+        <br><br>
+
+        <label for="">Password: </label>
+        <input type="password" name="password">
+        <br><br>
+
+        <input type="submit" name="login" value="Login">
+    </form>
+</body>     
