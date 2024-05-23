@@ -1,0 +1,27 @@
+.container {
+    height: auto;
+    width: 35px;
+   /* margin: 90px; */
+   padding: 10px;
+}
+
+.container input,select{
+    border-radius: 5px;
+    margin: 3px;
+}
+.container button{
+    background-color: black;
+    color:white;
+}
+*{
+    margin: 5px;
+    
+}
+
+/* .home-container {
+    background-color: rgb(0, 0, 0);
+}
+
+ul{
+    list-style: none;
+} */
