@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limited Concurrency Access</title>
+</head>
+
+<body>
+    <h1>Connection Status</h1>
+    <input id="inputValue" type="number" placeholder="Enter user Id"  />
+    <button onclick="checkAvailability()">Login</button>
+    <p id="message"></p>
+    <p id="CurrentlyUser"></p>
+    <button id="logout-btn">Logout</button>
+    <script>
+        const messageElement = document.getElementById('message');
+        const logoutButton = document.getElementById('logout-btn');
+        const UserCount=document.getElementById("CurrentlyUser");
+        const inputValue=document.getElementById('inputValue');
+
+        function checkAvailability() {
+            fetch('login.php')
+                .then(response => response.text())
+                .then(data => {
+                    
+                    if (data<4) {
+                        messageElement.textContent = `Access granted for user ${inputValue.value}`;
+
+                        UserCount.innerHTML=`Currently Logined User: ${data}`
+                    }else{
+                        messageElement.textContent = 'Maximum connections reached. Please try again later.';
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    messageElement.textContent = 'An error occurred. Please try again later.';
+                });
+        }
+
+        logoutButton.addEventListener('click', () => {
+            fetch('logout.php').then(res=>res.text()).then((data)=>{
+                UserCount.innerHTML=`Currently Logined User: ${data}`;
+
+            }).catch(error => {
+                    console.error(error);
+                    messageElement.textContent = 'Logout failed. Please try again.';
+                });
+        });
+
+    </script>
+</body>
+
+</html>
