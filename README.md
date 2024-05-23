@@ -15,3 +15,4 @@ CheatCodes :
 - BlackBox AI VS CODE Extension
 - Write 1s After github{Here}.com and Code opens in VS CODE 
 - Download Normal Folder from Repo : https://download-directory.github.io/
+- POSTMAN ALTERNATIVES : https://hoppscotch.io/
